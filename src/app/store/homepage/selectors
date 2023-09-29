@@ -1,0 +1,8 @@
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import * as fromHomepage from "./reducers";
+
+export const selectGuestState = createFeatureSelector<fromHomepage.State>(
+  fromHomepage.homepageKey
+);
+
+export const selectGuests = createSelector(selectGuestState, (state) => state);

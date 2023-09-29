@@ -1,3 +1,19 @@
 <mat-toolbar color="primary">
     <span>Phuong hcg interview</span>
+
+    <div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input #input type="text" matInput [matAutocomplete]="auto" (input)="filter()" (focus)="filter()">
+                <mat-autocomplete requireSelection #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button mat-raised-button color="white">Advanced Search</button>
+
+        </form>
+    </div>
+
 </mat-toolbar>

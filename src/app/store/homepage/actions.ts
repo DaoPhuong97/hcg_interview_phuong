@@ -25,7 +25,10 @@ export const searchRepositoryFailure = createAction(
   props<{ error: any }>()
 );
 
-export const loadMoreSearchResult = createAction('loadMoreSearchResult');
+export const loadMoreSearchResult = createAction(
+  'loadMoreSearchResult',
+  props<{ page: number; searchTerm: string }>()
+);
 export const loadMoreSearchResultSuccess = createAction(
   'loadMoreSearchResultSuccess',
   props<{ payload: any }>()

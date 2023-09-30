@@ -2,6 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+interface SearchRepositoryProps {
+  searchTerm: string;
+  page: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,9 +18,10 @@ export class HomepageService {
     return this.http.get(this.GITHUB_API);
   }
 
-  searchRepository(value: string): Observable<any> {
+  searchRepository(props: SearchRepositoryProps): Observable<any> {
+    const { searchTerm = '', page = 1 } = props;
     return this.http.get(
-      `${this.GITHUB_API}search/repositories?q=${value}&per_page=10`
+      `${this.GITHUB_API}search/repositories?q=${searchTerm}&per_page=20&page=${page}`
     );
   }
 }

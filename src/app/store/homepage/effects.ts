@@ -13,37 +13,41 @@ export class HomepageEffects {
     return this.actions$.pipe(
       ofType(HomepageActions.searchRepository),
       switchMap((props) =>
-        this.homepageService.searchRepository(props.value).pipe(
-          map((res) =>
-            HomepageActions.searchRepositorySuccess({
-              payload: { ...res, searchTerm: props.value },
-            })
-          ),
-          catchError((error) =>
-            of(HomepageActions.searchRepositoryFailure({ error }))
+        this.homepageService
+          .searchRepository({ searchTerm: props.value, page: 1 })
+          .pipe(
+            map((res) =>
+              HomepageActions.searchRepositorySuccess({
+                payload: { ...res, searchTerm: props.value },
+              })
+            ),
+            catchError((error) =>
+              of(HomepageActions.searchRepositoryFailure({ error }))
+            )
           )
-        )
       )
     );
   });
 
-  // loadMoreRepositoryData$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(HomepageActions.loadMoreSearchResult),
-  //     switchMap((props) =>
-  //       this.homepageService.loadHomepageData().pipe(
-  //         map((res) =>
-  //           HomepageActions.loadHomepageSuccess({
-  //             payload: { ...res, searchTerm: props.value },
-  //           })
-  //         ),
-  //         catchError((error) =>
-  //           of(HomepageActions.loadHomepageFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+  loadMoreRepositoryData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomepageActions.loadMoreSearchResult),
+      switchMap((props) =>
+        this.homepageService
+          .searchRepository({ page: props.page, searchTerm: props.searchTerm })
+          .pipe(
+            map((res) =>
+              HomepageActions.searchRepositorySuccess({
+                payload: { ...res, page: props.page },
+              })
+            ),
+            catchError((error) =>
+              of(HomepageActions.searchRepositoryFailure({ error }))
+            )
+          )
+      )
+    );
+  });
   constructor(
     private actions$: Actions,
     private homepageService: HomepageService

@@ -19,6 +19,7 @@ import { HomepageService } from './homepage.service';
 import { FormsModule } from '@angular/forms';
 import { SearchResultComponent } from './common-components/search-result/search-result.component';
 import { CardResultComponent } from './common-components/card-result/card-result.component';
+import { DynamicFilterComponent } from './common-components/dynamic-filter/dynamic-filter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { CardResultComponent } from './common-components/card-result/card-result
     NavbarComponent,
     SearchResultComponent,
     CardResultComponent,
+    DynamicFilterComponent,
   ],
   imports: [
     BrowserModule,

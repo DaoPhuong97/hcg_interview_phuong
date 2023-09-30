@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(searchRepository({ value: 'angular' }));
+    this.searchInput.nativeElement.value = 'angular';
   }
 
   filter() {}
@@ -29,5 +30,8 @@ export class NavbarComponent implements OnInit {
   onSearch() {
     const { value } = this.searchInput.nativeElement;
     this.store.dispatch(searchRepository({ value }));
+  }
+  toggleAdvancedSearch(event: any) {
+    event.preventDefault();
   }
 }

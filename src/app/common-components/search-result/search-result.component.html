@@ -1,0 +1,9 @@
+<div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+    <div *ngFor="let item of items">
+        <app-card-result [item]="item"></app-card-result>
+    </div>
+</div>
+<!-- <div *ngFor="let item of mockItems">
+    <app-card-result></app-card-result>
+</div> -->

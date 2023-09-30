@@ -1,0 +1,16 @@
+<div class="card-wrapper my-8">
+    <div class="header d-flex align-center">
+        <div class="avatar mr-4">
+            <img [src]="item.owner.avatar_url" alt="" />
+        </div>
+        <h2>{{item.name}}</h2>
+    </div>
+    <div class="description mb-4">
+        {{item.description}}
+    </div>
+    <div class="footer d-flex align-center justify-between">
+        <div class="languageg">{{item.language}}</div>
+        <div class="stars">* {{item.stargazers_count}}</div>
+        <div class="last-update">Updated on {{item.updated_at | date}}</div>
+    </div>
+</div>

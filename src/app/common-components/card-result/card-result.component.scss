@@ -1,0 +1,27 @@
+.card-wrapper {
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 24px 32px 32px 32px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border: 1px solid back;
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    border: 1px solid back;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.description {
+  color: gray;
+}
+
+.footer {
+  width: 50%;
+}

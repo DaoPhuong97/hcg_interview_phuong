@@ -2,7 +2,7 @@
     <span>Phuong hcg interview</span>
 
     <div class="form-container">
-        <form class="w-100" (submit)="onSearch()">
+        <form class="w-100" (submit)="onSearch()" class="d-flex items-center">
             <mat-form-field class="w-100 mr-8">
                 <input class="w-100" #searchInput type="text" matInput [matAutocomplete]="auto" (input)="filter()"
                     (focus)="filter()">
@@ -11,14 +11,22 @@
                         {{option}}
                     </mat-option>
                 </mat-autocomplete>
+                <button class="search-icon" mat-icon-button>
+                    <mat-icon>search</mat-icon>
+                </button>
             </mat-form-field>
+
             <button mat-raised-button color="white">Advanced Search</button>
         </form>
     </div>
 
-    <div>
+    <div class="d-flex justify-between flex-row items-center">
+        <div class="mr-2">
+            <div>Username</div>
+            <div class="logout-text">Logout</div>
+        </div>
         <button mat-mini-fab color="white" (click)="onSearch()">
-            <mat-icon fontIcon="home"></mat-icon>
+            <mat-icon>user</mat-icon>
         </button>
     </div>
 </mat-toolbar>

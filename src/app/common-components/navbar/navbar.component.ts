@@ -20,14 +20,11 @@ export class NavbarComponent implements OnInit {
     this.filteredOptions = this.options.slice();
   }
 
-  ngOnInit(): void {}
-
-  filter() {
-    const filterValue = '';
-    this.filteredOptions = this.options.filter((o) =>
-      o.toLowerCase().includes(filterValue)
-    );
+  ngOnInit(): void {
+    this.store.dispatch(searchRepository({ value: 'angular' }));
   }
+
+  filter() {}
 
   onSearch() {
     const { value } = this.searchInput.nativeElement;

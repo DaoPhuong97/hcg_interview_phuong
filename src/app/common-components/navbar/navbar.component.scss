@@ -1,3 +1,11 @@
 .form-container {
   width: 500px;
+  mat-form-field {
+    width: 80%;
+  }
+}
+.logout-text {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
 }

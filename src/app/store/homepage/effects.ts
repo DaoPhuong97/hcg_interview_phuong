@@ -9,7 +9,7 @@ import { HomepageService } from 'src/app/homepage.service';
 
 @Injectable()
 export class HomepageEffects {
-  searchRepoitoryData$ = createEffect(() => {
+  searchRepositoryData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HomepageActions.searchRepository),
       switchMap((props) =>
@@ -27,6 +27,23 @@ export class HomepageEffects {
     );
   });
 
+  // loadMoreRepositoryData$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(HomepageActions.loadMoreSearchResult),
+  //     switchMap((props) =>
+  //       this.homepageService.loadHomepageData().pipe(
+  //         map((res) =>
+  //           HomepageActions.loadHomepageSuccess({
+  //             payload: { ...res, searchTerm: props.value },
+  //           })
+  //         ),
+  //         catchError((error) =>
+  //           of(HomepageActions.loadHomepageFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
   constructor(
     private actions$: Actions,
     private homepageService: HomepageService

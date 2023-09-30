@@ -9,7 +9,7 @@
         {{item.description}}
     </div>
     <div class="footer d-flex align-center justify-between">
-        <div class="languageg">{{item.language}}</div>
+        <div class="languageg">{{item.language ? item.language : 'Nothing'}}</div>
         <div class="stars">* {{item.stargazers_count}}</div>
         <div class="last-update">Updated on {{item.updated_at | date}}</div>
     </div>

@@ -15,6 +15,7 @@ import * as fromHomepage from './store/homepage/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomepageEffects } from './store/homepage/effects';
 import { HomepageService } from './homepage.service';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +29,13 @@ import { HomepageService } from './homepage.service';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
 
-    StoreModule.forRoot(fromHomepage.reducer),
-    EffectsModule.forRoot([HomepageEffects]),
+    StoreModule.forRoot([]),
+    EffectsModule.forRoot([]),
+
+    StoreModule.forFeature(fromHomepage.homepageKey, fromHomepage.reducer),
+    EffectsModule.forFeature([HomepageEffects]),
   ],
   providers: [HomepageService],
   bootstrap: [AppComponent],

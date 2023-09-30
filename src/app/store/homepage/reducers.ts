@@ -3,14 +3,22 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as HomepageActions from './actions';
 
 export const homepageKey = 'homepage';
-// 1. this is our guest state (for GuestModule)
-export interface State {}
+// 1. this is our state
+export interface State {
+  items: any[];
+  page: number;
+  loading: boolean;
+}
 
 // we need to provide an initial state
-export const initialState: State = {};
+export const initialState: State = {
+  items: [],
+  page: 0,
+  loading: false,
+};
 
 // 2. reducer functions to manipulate the state
-const guestReducer = createReducer(
+const homepageReducer = createReducer(
   initialState,
 
   on(HomepageActions.loadHomepageSuccess, (state, action) => {
@@ -19,9 +27,16 @@ const guestReducer = createReducer(
   }),
   on(HomepageActions.loadHomepageFailure, (state, action) => {
     return { ...state };
+  }),
+  on(HomepageActions.searchRepositorySuccess, (state, action) => {
+    console.log(action);
+    return state;
+  }),
+  on(HomepageActions.searchRepositoryFailure, (state, action) => {
+    return state;
   })
 );
 
 export function reducer(state: State | undefined, action: Action) {
-  return guestReducer(state, action);
+  return homepageReducer(state, action);
 }

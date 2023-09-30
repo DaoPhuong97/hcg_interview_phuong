@@ -9,16 +9,16 @@ import { HomepageService } from 'src/app/homepage.service';
 
 @Injectable()
 export class HomepageEffects {
-  loadHomepageData$ = createEffect(() => {
+  searchRepoitoryData$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(HomepageActions.loadHomepage),
+      ofType(HomepageActions.searchRepository),
       switchMap(() =>
-        this.homepageService.loadHomepageData().pipe(
-          map((response) =>
-            HomepageActions.loadHomepageSuccess({ response: [] })
+        this.homepageService.searchRepository('angular').pipe(
+          map((res) =>
+            HomepageActions.searchRepositorySuccess({ response: res })
           ),
           catchError((error) =>
-            of(HomepageActions.loadHomepageFailure({ error }))
+            of(HomepageActions.searchRepositoryFailure({ error }))
           )
         )
       )

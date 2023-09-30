@@ -12,4 +12,10 @@ export class HomepageService {
   loadHomepageData(): Observable<any> {
     return this.http.get(this.GITHUB_API);
   }
+
+  searchRepository(value: string): Observable<any> {
+    return this.http.get(
+      `${this.GITHUB_API}search/repositories?q=${value}&per_page=10`
+    );
+  }
 }

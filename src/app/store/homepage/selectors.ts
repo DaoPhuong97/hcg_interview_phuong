@@ -15,3 +15,5 @@ export const selectSearchResult = selector((state) => state.items);
 export const selectCurrentPage = selector((state) => state.page);
 
 export const selectFilter = selector((state) => state.filter);
+
+export const selectIsUseFilter = selector((state) => state.isUseFilter);

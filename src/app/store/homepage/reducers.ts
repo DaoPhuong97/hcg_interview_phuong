@@ -10,6 +10,7 @@ export interface State {
   items: any[];
   page: number;
   loading: boolean;
+  isUseFilter: boolean;
   filter: {
     owner: string;
   };
@@ -22,6 +23,7 @@ export const initialState: State = {
   items: [],
   page: 1,
   loading: false,
+  isUseFilter: false,
   filter: {
     owner: '',
   },
@@ -56,16 +58,20 @@ const homepageReducer = createReducer(
     return { ...state };
   }),
 
+  on(HomepageActions.onToggleAdvacnedFilter, (state, action) => {
+    return { ...state, isUseFilter: !state.isUseFilter };
+  }),
+
   on(HomepageActions.updateAdvancedFilter, (state, action) => {
     return {
       ...state,
       filter: { ...state.filter, [action.key]: action.value },
     };
-  })
+  }),
 
-  // on(HomepageActions.searchRepositoryWithFilterSuccess, (state, action) => {
-  //   return { ...state, items: action.payload };
-  // })
+  on(HomepageActions.searchRepositoryWithFilterSuccess, (state, action) => {
+    return { ...state, items: action.payload };
+  })
 );
 
 export function reducer(state: State | undefined, action: Action) {

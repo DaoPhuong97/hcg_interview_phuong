@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
+import {
+  selectFilter,
+  selectIsUseFilter,
+  selectState,
+} from 'src/app/store/homepage/selectors';
 import { Observable, filter } from 'rxjs';
 import { updateAdvancedFilter } from 'src/app/store/homepage/actions';
 
@@ -12,6 +16,8 @@ import { updateAdvancedFilter } from 'src/app/store/homepage/actions';
 })
 export class DynamicFilterComponent implements OnInit {
   filters: Observable<any> = this.store.select(selectFilter);
+  isUseFilter: Observable<any> = this.store.select(selectIsUseFilter);
+
   ownerValue: string = '';
 
   constructor(private store: Store<HomepageState>) {}

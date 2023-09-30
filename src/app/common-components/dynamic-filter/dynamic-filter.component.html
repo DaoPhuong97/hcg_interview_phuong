@@ -1,4 +1,4 @@
-<div class="dynamic-filter-container">
+<div *ngIf="isUseFilter | async" class="dynamic-filter-container">
     <form class="example-form">
         <mat-form-field class="example-full-width">
             <mat-label>Owner</mat-label>

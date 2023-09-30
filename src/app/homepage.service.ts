@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 interface SearchRepositoryProps {
   searchTerm: string;
+  filter: SearchByFilterProps;
   page: number;
 }
 
@@ -25,9 +26,13 @@ export class HomepageService {
   }
 
   searchRepository(props: SearchRepositoryProps): Observable<any> {
-    const { searchTerm = '', page = 1 } = props;
+    const { searchTerm = '', page = 1, filter } = props;
+    const { owner = '', language = '' } = filter;
+    const languageQuery = language.length > 0 ? `language:${language}` : '';
+    const ownerQuery = owner.length > 0 ? `owner:${owner}` : '';
+    const query = `${languageQuery} ${ownerQuery} ${searchTerm}`;
     return this.http.get(
-      `${this.GITHUB_API}search/repositories?q=${searchTerm}&per_page=20&page=${page}`
+      `${this.GITHUB_API}search/repositories?q=${query}&per_page=20&page=${page}`
     );
   }
 

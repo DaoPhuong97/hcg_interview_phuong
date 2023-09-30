@@ -14,7 +14,7 @@ export const loadHomepageFailure = createAction(
 
 export const searchRepository = createAction(
   'searchRepository',
-  props<{ value: string }>()
+  props<{ value: string; filter: any }>()
 );
 export const searchRepositorySuccess = createAction(
   'searchRepositorySuccess',
@@ -38,20 +38,22 @@ export const loadMoreSearchResultFailure = createAction(
   props<{ error: any }>()
 );
 
+export const onToggleAdvacnedFilter = createAction('onToggleAdvacnedFilter');
+
 export const updateAdvancedFilter = createAction(
   'updateAdvancedFilter',
   props<{ key: string; value: string }>()
 );
 
 export const searchRepositoryWithFilter = createAction(
-  'searchRepository',
+  'searchRepositoryWithFilter',
   props<{ filter: any }>()
 );
 export const searchRepositoryWithFilterSuccess = createAction(
-  'searchRepositorySuccess',
+  'searchRepositoryWithFilterSuccess',
   props<{ payload: any }>()
 );
 export const searchRepositoryWithFilterFailure = createAction(
-  'searchRepositoryFailure',
+  'searchRepositoryWithFilterFailure',
   props<{ error: any }>()
 );

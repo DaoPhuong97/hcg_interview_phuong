@@ -14,7 +14,11 @@ export class HomepageEffects {
       ofType(HomepageActions.searchRepository),
       switchMap((props) =>
         this.homepageService
-          .searchRepository({ searchTerm: props.value, page: 1 })
+          .searchRepository({
+            searchTerm: props.value,
+            filter: props.filter,
+            page: 1,
+          })
           .pipe(
             map((res) =>
               HomepageActions.searchRepositorySuccess({
@@ -34,13 +38,17 @@ export class HomepageEffects {
       ofType(HomepageActions.loadMoreSearchResult),
       switchMap((props) => {
         return this.homepageService
-          .searchRepository({ page: props.page, searchTerm: props.searchTerm })
+          .searchRepository({
+            page: props.page,
+            filter: { owner: '', language: '' },
+            searchTerm: props.searchTerm,
+          })
           .pipe(
-            map((res) => {
-              return HomepageActions.loadMoreSearchResultSuccess({
+            map((res) =>
+              HomepageActions.loadMoreSearchResultSuccess({
                 payload: { ...res, page: props.page },
-              });
-            }),
+              })
+            ),
             catchError((error) =>
               of(HomepageActions.searchRepositoryFailure({ error }))
             )
@@ -49,23 +57,23 @@ export class HomepageEffects {
     );
   });
 
-  // searchRepositoryWithFilterData$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(HomepageActions.searchRepositoryWithFilter),
-  //     switchMap((props) =>
-  //       this.homepageService.searchRepositoryByFilter(props).pipe(
-  //         map((res) =>
-  //           HomepageActions.searchRepositoryWithFilterSuccess({
-  //             payload: res,
-  //           })
-  //         ),
-  //         catchError((error) =>
-  //           of(HomepageActions.searchRepositoryFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+  searchRepositoryWithFilterData$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomepageActions.searchRepositoryWithFilter),
+      switchMap((props) =>
+        this.homepageService.searchRepositoryByFilter(props).pipe(
+          map((res) =>
+            HomepageActions.searchRepositoryWithFilterSuccess({
+              payload: res,
+            })
+          ),
+          catchError((error) =>
+            of(HomepageActions.searchRepositoryFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   constructor(
     private actions$: Actions,
     private homepageService: HomepageService

@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
 import {
+  onToggleAdvacnedFilter,
   searchRepository,
   searchRepositoryWithFilter,
 } from 'src/app/store/homepage/actions';
@@ -32,21 +33,25 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     const initSearchTerm = 'angular';
     this.searchTerm = initSearchTerm;
-    this.store.dispatch(searchRepository({ value: initSearchTerm }));
+    this.store.dispatch(
+      searchRepository({
+        value: initSearchTerm,
+        filter: { owner: '', language: '' },
+      })
+    );
   }
 
   onFilter() {}
 
   onSearch() {
-    this.store.dispatch(searchRepository({ value: this.searchTerm }));
+    this.filters.subscribe((filter) => {
+      this.store.dispatch(searchRepository({ value: this.searchTerm, filter }));
+    });
   }
 
   handleAdvancedSearch(event: any) {
     event.preventDefault();
     event.stopPropagation();
-
-    // this.filters.subscribe((filter) => {
-    //   this.store.dispatch(searchRepositoryWithFilter(filter));
-    // });
+    this.store.dispatch(onToggleAdvacnedFilter());
   }
 }

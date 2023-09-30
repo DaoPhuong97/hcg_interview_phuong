@@ -8,7 +8,11 @@
                     [matAutocomplete]="auto" (input)="onFilter()" (focus)="onFilter()">
                 <mat-autocomplete requireSelection #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions" [value]="option">
-                        {{option}}
+                        <div class="d-flex items-center justify-between">
+                            {{option}}
+                            <mat-icon>history</mat-icon>
+                        </div>
+
                     </mat-option>
                 </mat-autocomplete>
                 <button class="search-icon" mat-icon-button>

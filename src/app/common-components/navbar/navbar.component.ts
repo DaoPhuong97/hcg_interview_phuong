@@ -20,18 +20,19 @@ export class NavbarComponent implements OnInit {
 
   searchTerm = '';
   formControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three', 'Four', 'Five'];
-  filteredOptions: string[];
+  options: string[] = [];
+  filteredOptions: string[] = [];
 
   state: Observable<any> = this.store.select(selectState);
   filters: Observable<any> = this.store.select(selectFilter);
 
-  constructor(private store: Store<HomepageState>) {
-    this.filteredOptions = this.options.slice();
-  }
+  histories: string[] = [];
+
+  constructor(private store: Store<HomepageState>) {}
 
   ngOnInit(): void {
     const initSearchTerm = 'angular';
+    this.histories.concat(initSearchTerm);
     this.searchTerm = initSearchTerm;
     this.store.dispatch(
       searchRepository({
@@ -44,6 +45,8 @@ export class NavbarComponent implements OnInit {
   onFilter() {}
 
   onSearch() {
+    this.histories = this.histories.concat(this.searchTerm);
+    this.filteredOptions = this.histories;
     this.filters.subscribe((filter) => {
       this.store.dispatch(searchRepository({ value: this.searchTerm, filter }));
     });

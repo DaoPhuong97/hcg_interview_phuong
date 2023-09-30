@@ -40,5 +40,5 @@ export const loadMoreSearchResultFailure = createAction(
 
 export const updateAdvancedFilter = createAction(
   'updateAdvancedFilter',
-  props<{ filter: any }>()
+  props<{ key: string; value: string }>()
 );

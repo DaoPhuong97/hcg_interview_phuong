@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
 import { searchRepository } from 'src/app/store/homepage/actions';
-import { selectState } from 'src/app/store/homepage/selectors';
+import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   filteredOptions: string[];
 
   state: Observable<any> = this.store.select(selectState);
+  filters: Observable<any> = this.store.select(selectFilter);
 
   constructor(private store: Store<HomepageState>) {
     this.filteredOptions = this.options.slice();
@@ -31,7 +32,7 @@ export class NavbarComponent implements OnInit {
     this.store.dispatch(searchRepository({ value: initSearchTerm }));
   }
 
-  filter() {}
+  onFilter() {}
 
   onOwnerInputChange(value: string) {}
 
@@ -41,5 +42,8 @@ export class NavbarComponent implements OnInit {
 
   handleAdvancedSearch(event: any) {
     event.preventDefault();
+    this.filters.subscribe((filter) => {
+      console.log(filter);
+    });
   }
 }

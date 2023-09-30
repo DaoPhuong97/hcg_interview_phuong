@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import { selectState } from 'src/app/store/homepage/selectors';
+import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
 import { Observable, filter } from 'rxjs';
 import { updateAdvancedFilter } from 'src/app/store/homepage/actions';
 
@@ -11,15 +11,13 @@ import { updateAdvancedFilter } from 'src/app/store/homepage/actions';
   styleUrls: ['./dynamic-filter.component.scss'],
 })
 export class DynamicFilterComponent implements OnInit {
-  state: Observable<any> = this.store.select(selectState);
+  filters: Observable<any> = this.store.select(selectFilter);
   ownerValue: string = '';
 
   constructor(private store: Store<HomepageState>) {}
   ngOnInit(): void {}
 
   onOwnerInputChange(value: string) {
-    this.state.subscribe((state) => {
-      // const newFilter = { ...state.filter, owner: value };
-    });
+    this.store.dispatch(updateAdvancedFilter({ key: 'owner', value }));
   }
 }

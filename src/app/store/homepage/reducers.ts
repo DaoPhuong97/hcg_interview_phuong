@@ -57,7 +57,10 @@ const homepageReducer = createReducer(
   }),
 
   on(HomepageActions.updateAdvancedFilter, (state, action) => {
-    return { ...state, filter: action.filter };
+    return {
+      ...state,
+      filter: { ...state.filter, [action.key]: action.value },
+    };
   })
 );
 

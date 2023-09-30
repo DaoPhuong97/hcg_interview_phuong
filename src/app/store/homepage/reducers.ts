@@ -10,6 +10,9 @@ export interface State {
   items: any[];
   page: number;
   loading: boolean;
+  filter: {
+    owner: string;
+  };
 }
 
 // we need to provide an initial state
@@ -19,6 +22,9 @@ export const initialState: State = {
   items: [],
   page: 1,
   loading: false,
+  filter: {
+    owner: '',
+  },
 };
 
 // 2. reducer functions to manipulate the state
@@ -48,6 +54,10 @@ const homepageReducer = createReducer(
   }),
   on(HomepageActions.loadMoreSearchResultFailure, (state, action) => {
     return { ...state };
+  }),
+
+  on(HomepageActions.updateAdvancedFilter, (state, action) => {
+    return { ...state, filter: action.filter };
   })
 );
 

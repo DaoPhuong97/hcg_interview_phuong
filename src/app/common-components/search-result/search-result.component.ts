@@ -22,7 +22,6 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.state.subscribe((state) => {
-      console.log(state);
       this.totalCount = state.totalCount;
       this.internalSearchTerm = state.searchTerm;
     });

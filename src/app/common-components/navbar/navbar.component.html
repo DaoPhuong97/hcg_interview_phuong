@@ -4,8 +4,9 @@
     <div class="form-container">
         <form class="w-100" (submit)="onSearch()" class="d-flex items-center">
             <mat-form-field class="w-100 mr-8" style="width: 100%">
-                <input class="w-100" #searchInput type="text" matInput [matAutocomplete]="auto" (input)="filter()"
-                    (focus)="filter()">
+                <input name="searchInput" class="w-100" [(ngModel)]="searchTerm"
+                    (ngModelChange)="onOwnerInputChange($event)" type="text" matInput [matAutocomplete]="auto"
+                    (input)="filter()" (focus)="filter()">
                 <mat-autocomplete requireSelection #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions" [value]="option">
                         {{option}}

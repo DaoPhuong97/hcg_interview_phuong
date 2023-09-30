@@ -38,4 +38,8 @@ export const loadMoreSearchResultFailure = createAction(
   props<{ error: any }>()
 );
 
+export const updateAdvancedFilter = createAction(
+  'updateAdvancedFilter',
+  props<{ filter: any }>()
+);
 export const onToggleFilter = createAction('onToggleFilter');

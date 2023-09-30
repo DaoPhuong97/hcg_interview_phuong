@@ -15,7 +15,9 @@ export class HomepageEffects {
       switchMap((props) =>
         this.homepageService.searchRepository(props.value).pipe(
           map((res) =>
-            HomepageActions.searchRepositorySuccess({ payload: res })
+            HomepageActions.searchRepositorySuccess({
+              payload: { ...res, searchTerm: props.value },
+            })
           ),
           catchError((error) =>
             of(HomepageActions.searchRepositoryFailure({ error }))

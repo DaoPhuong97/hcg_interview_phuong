@@ -5,6 +5,7 @@ import * as HomepageActions from './actions';
 export const homepageKey = 'homepage';
 // 1. this is our state
 export interface State {
+  searchTerm: string;
   items: any[];
   page: number;
   loading: boolean;
@@ -12,6 +13,7 @@ export interface State {
 
 // we need to provide an initial state
 export const initialState: State = {
+  searchTerm: '',
   items: [],
   page: 0,
   loading: false,
@@ -30,8 +32,8 @@ const homepageReducer = createReducer(
   }),
 
   on(HomepageActions.searchRepositorySuccess, (state, action) => {
-    const { items } = action.payload;
-    return { ...state, items };
+    const { items, searchTerm } = action.payload;
+    return { ...state, items, searchTerm };
   }),
   on(HomepageActions.searchRepositoryFailure, (state, action) => {
     return state;

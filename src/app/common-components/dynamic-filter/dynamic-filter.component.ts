@@ -19,11 +19,18 @@ export class DynamicFilterComponent implements OnInit {
   isUseFilter: Observable<any> = this.store.select(selectIsUseFilter);
 
   ownerValue: string = '';
+  useLanguageFilter = false;
 
   constructor(private store: Store<HomepageState>) {}
   ngOnInit(): void {}
 
   onOwnerInputChange(value: string) {
     this.store.dispatch(updateAdvancedFilter({ key: 'owner', value }));
+  }
+  toggleLanguageFilter(value: boolean) {
+    this.useLanguageFilter = value;
+    if (value === false) {
+      this.store.dispatch(updateAdvancedFilter({ key: 'language', value: '' }));
+    }
   }
 }

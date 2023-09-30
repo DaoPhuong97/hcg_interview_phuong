@@ -7,7 +7,19 @@
                     matInput [ngModelOptions]="{standalone: true}" placeholder="Enter text...">
             </mat-form-field>
 
-            <app-language-filter></app-language-filter>
+            <button *ngIf="!useLanguageFilter" mat-button (click)="toggleLanguageFilter(true)">
+                <mat-icon>add</mat-icon>
+
+                Add Language
+                filter</button>
+
+            <div *ngIf="useLanguageFilter" class="d-flex">
+                <app-language-filter></app-language-filter>
+                <button (click)="toggleLanguageFilter(false)" mat-icon-button
+                    aria-label="Example icon button with a vertical three dot icon">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+            </div>
         </form>
     </div>
 </div>

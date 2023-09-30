@@ -14,5 +14,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onScroll() {}
+  onScroll() {
+    console.log('reach');
+  }
 }

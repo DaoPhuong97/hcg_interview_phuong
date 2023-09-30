@@ -1,5 +1,4 @@
-<div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-    (scrolled)="onScroll()">
+<div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [scrollWindow]="false" (scrolled)="onScroll()">
     <div *ngFor="let item of items | async">
         <app-card-result [item]="item"></app-card-result>
     </div>

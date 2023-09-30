@@ -2,7 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import { searchRepository } from 'src/app/store/homepage/actions';
+import {
+  onToggleFilter,
+  searchRepository,
+} from 'src/app/store/homepage/actions';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(searchRepository({ value: 'angular' }));
+    // this.store.dispatch(searchRepository({ value: 'angular' }));
     this.searchInput.nativeElement.value = 'angular';
   }
 
@@ -31,7 +34,9 @@ export class NavbarComponent implements OnInit {
     const { value } = this.searchInput.nativeElement;
     this.store.dispatch(searchRepository({ value }));
   }
-  toggleAdvancedSearch(event: any) {
+
+  handleAdvancedSearch(event: any) {
     event.preventDefault();
+    // this.store.dispatch(onToggleFilter());
   }
 }

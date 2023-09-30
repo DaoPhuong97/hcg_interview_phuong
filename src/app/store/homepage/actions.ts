@@ -37,3 +37,5 @@ export const loadMoreSearchResultFailure = createAction(
   'loadMoreSearchResultFailure',
   props<{ error: any }>()
 );
+
+export const onToggleFilter = createAction('onToggleFilter');

@@ -10,7 +10,6 @@ export interface State {
   items: any[];
   page: number;
   loading: boolean;
-  displayFilter: boolean;
 }
 
 // we need to provide an initial state
@@ -20,7 +19,6 @@ export const initialState: State = {
   items: [],
   page: 1,
   loading: false,
-  displayFilter: false,
 };
 
 // 2. reducer functions to manipulate the state
@@ -48,7 +46,7 @@ const homepageReducer = createReducer(
     const { items, page } = action.payload;
     return { ...state, page, items: [...state.items, ...items] };
   }),
-  on(HomepageActions.loadHomepageFailure, (state, action) => {
+  on(HomepageActions.loadMoreSearchResultFailure, (state, action) => {
     return { ...state };
   })
 );

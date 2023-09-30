@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   imports: [
@@ -19,6 +21,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatToolbarModule,
     MatAutocompleteModule,
     ScrollingModule,
+    MatDatepickerModule,
+    MatSliderModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -30,6 +34,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatToolbarModule,
     MatAutocompleteModule,
     ScrollingModule,
+    MatDatepickerModule,
+    MatSliderModule,
   ],
 })
 export class MaterialModule {}

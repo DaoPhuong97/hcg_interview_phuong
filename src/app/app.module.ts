@@ -16,10 +16,11 @@ import * as fromHomepage from './store/homepage/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomepageEffects } from './store/homepage/effects';
 import { HomepageService } from './homepage.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchResultComponent } from './common-components/search-result/search-result.component';
 import { CardResultComponent } from './common-components/card-result/card-result.component';
 import { DynamicFilterComponent } from './common-components/dynamic-filter/dynamic-filter.component';
+import { LanguageFilterComponent } from './common-components/dynamic-filter/filters/language-filter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { DynamicFilterComponent } from './common-components/dynamic-filter/dynam
     SearchResultComponent,
     CardResultComponent,
     DynamicFilterComponent,
+    LanguageFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { DynamicFilterComponent } from './common-components/dynamic-filter/dynam
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     InfiniteScrollModule,
 
     StoreModule.forRoot([]),

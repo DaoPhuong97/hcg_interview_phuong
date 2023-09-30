@@ -28,12 +28,20 @@ const homepageReducer = createReducer(
   on(HomepageActions.loadHomepageFailure, (state, action) => {
     return { ...state };
   }),
+
   on(HomepageActions.searchRepositorySuccess, (state, action) => {
     const { items } = action.payload;
-    return { ...state, items, page: state.page + 1, loading: false };
+    return { ...state, items };
   }),
   on(HomepageActions.searchRepositoryFailure, (state, action) => {
     return state;
+  }),
+
+  on(HomepageActions.loadHomepageSuccess, (state, action) => {
+    return { ...state };
+  }),
+  on(HomepageActions.loadHomepageFailure, (state, action) => {
+    return { ...state };
   })
 );
 

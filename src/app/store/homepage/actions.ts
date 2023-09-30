@@ -21,3 +21,13 @@ export const searchRepositoryFailure = createAction(
   'searchRepositoryFailure',
   props<{ error: any }>()
 );
+
+export const loadMoreSearchResult = createAction('loadMoreSearchResult');
+export const loadMoreSearchResultSuccess = createAction(
+  'loadMoreSearchResultSuccess',
+  props<{ payload: any }>()
+);
+export const loadMoreSearchResultFailure = createAction(
+  'loadMoreSearchResultFailure',
+  props<{ error: any }>()
+);

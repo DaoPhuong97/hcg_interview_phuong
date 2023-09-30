@@ -1,10 +1,11 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="d-flex justify-around">
     <span>Phuong hcg interview</span>
 
-    <div>
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-                <input #input type="text" matInput [matAutocomplete]="auto" (input)="filter()" (focus)="filter()">
+    <div class="form-container">
+        <form class="w-100" (submit)="onSearch()">
+            <mat-form-field class="w-100 mr-8">
+                <input class="w-100" #searchInput type="text" matInput [matAutocomplete]="auto" (input)="filter()"
+                    (focus)="filter()">
                 <mat-autocomplete requireSelection #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions" [value]="option">
                         {{option}}
@@ -12,8 +13,12 @@
                 </mat-autocomplete>
             </mat-form-field>
             <button mat-raised-button color="white">Advanced Search</button>
-
         </form>
     </div>
 
+    <div>
+        <button mat-mini-fab color="white" (click)="onSearch()">
+            <mat-icon fontIcon="home"></mat-icon>
+        </button>
+    </div>
 </mat-toolbar>

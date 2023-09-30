@@ -2,10 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import {
-  onToggleFilter,
-  searchRepository,
-} from 'src/app/store/homepage/actions';
+import { searchRepository } from 'src/app/store/homepage/actions';
 import { selectState } from 'src/app/store/homepage/selectors';
 import { Observable } from 'rxjs';
 
@@ -44,6 +41,5 @@ export class NavbarComponent implements OnInit {
 
   handleAdvancedSearch(event: any) {
     event.preventDefault();
-    // this.store.dispatch(onToggleFilter());
   }
 }

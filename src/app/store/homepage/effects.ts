@@ -32,20 +32,20 @@ export class HomepageEffects {
   loadMoreRepositoryData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HomepageActions.loadMoreSearchResult),
-      switchMap((props) =>
-        this.homepageService
+      switchMap((props) => {
+        return this.homepageService
           .searchRepository({ page: props.page, searchTerm: props.searchTerm })
           .pipe(
-            map((res) =>
-              HomepageActions.searchRepositorySuccess({
+            map((res) => {
+              return HomepageActions.loadMoreSearchResultSuccess({
                 payload: { ...res, page: props.page },
-              })
-            ),
+              });
+            }),
             catchError((error) =>
               of(HomepageActions.searchRepositoryFailure({ error }))
             )
-          )
-      )
+          );
+      })
     );
   });
   constructor(

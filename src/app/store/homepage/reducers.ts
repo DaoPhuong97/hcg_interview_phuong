@@ -49,8 +49,8 @@ const homepageReducer = createReducer(
   }),
 
   on(HomepageActions.loadMoreSearchResultSuccess, (state, action) => {
-    const { items, page } = action.payload;
-    return { ...state, page, items: [...state.items, ...items] };
+    const newItems = state.items.concat(action.payload.items);
+    return { ...state, page: action.payload.page, items: newItems };
   }),
   on(HomepageActions.loadMoreSearchResultFailure, (state, action) => {
     return { ...state };

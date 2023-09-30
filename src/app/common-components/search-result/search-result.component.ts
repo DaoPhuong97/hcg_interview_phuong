@@ -18,6 +18,7 @@ export class SearchResultComponent implements OnInit {
 
   totalCount = 0;
   internalSearchTerm = '';
+  currentPage = 0;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class SearchResultComponent implements OnInit {
   onScroll() {
     this.state.subscribe((state) => {
       const { page, searchTerm } = state;
+      this.currentPage = page;
       this.store.dispatch(loadMoreSearchResult({ page: page + 1, searchTerm }));
     });
   }

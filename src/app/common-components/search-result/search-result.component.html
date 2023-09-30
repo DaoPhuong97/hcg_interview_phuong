@@ -1,0 +1,9 @@
+<div class="search-result-container">
+    <h2 class="pt-8" *ngIf="totalCount > 0">About {{totalCount}} results for "{{internalSearchTerm}}"</h2>
+    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [scrollWindow]="false"
+        [infiniteScrollThrottle]="1000" (scrolled)="onScroll()" [infiniteScrollDisabled]="true">
+        <div *ngFor="let item of items | async">
+            <app-card-result [item]="item"></app-card-result>
+        </div>
+    </div>
+</div>

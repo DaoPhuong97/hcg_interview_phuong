@@ -10,18 +10,27 @@ import { NavbarComponent } from './common-components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { StoreModule } from '@ngrx/store';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import * as fromHomepage from './store/homepage/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomepageEffects } from './store/homepage/effects';
 import { HomepageService } from './homepage.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchResultComponent } from './common-components/search-result/search-result.component';
+import { CardResultComponent } from './common-components/card-result/card-result.component';
+import { DynamicFilterComponent } from './common-components/dynamic-filter/dynamic-filter.component';
+import { LanguageFilterComponent } from './common-components/dynamic-filter/filters/language-filter.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     AdvancedSearchComponent,
     NavbarComponent,
+    SearchResultComponent,
+    CardResultComponent,
+    DynamicFilterComponent,
+    LanguageFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +39,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule,
 
     StoreModule.forRoot([]),
     EffectsModule.forRoot([]),

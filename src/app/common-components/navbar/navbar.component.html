@@ -2,23 +2,38 @@
     <span>Phuong hcg interview</span>
 
     <div class="form-container">
-        <form class="w-100" (submit)="onSearch()">
-            <mat-form-field class="w-100 mr-8">
-                <input class="w-100" #searchInput type="text" matInput [matAutocomplete]="auto" (input)="filter()"
-                    (focus)="filter()">
+        <form class="w-100" (submit)="onSearch()" class="d-flex items-center">
+            <mat-form-field class="w-100 mr-8" style="width: 100%">
+                <input name="searchInput" class="w-100" [(ngModel)]="searchTerm" type="text" matInput
+                    [matAutocomplete]="auto" (input)="onFilter()" (focus)="onFilter()">
                 <mat-autocomplete requireSelection #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions" [value]="option">
-                        {{option}}
+                        <div class="d-flex items-center justify-between">
+                            {{option}}
+                            <mat-icon>history</mat-icon>
+                        </div>
+
                     </mat-option>
                 </mat-autocomplete>
+                <button class="search-icon" mat-icon-button>
+                    <mat-icon>search</mat-icon>
+                </button>
             </mat-form-field>
-            <button mat-raised-button color="white">Advanced Search</button>
         </form>
     </div>
 
     <div>
+        <button mat-raised-button color="white" (click)="handleAdvancedSearch($event)">Toggle Advanced
+            Search</button>
+    </div>
+
+    <div class="d-flex justify-between flex-row items-center">
+        <div class="mr-2">
+            <div>Username</div>
+            <div class="logout-text">Logout</div>
+        </div>
         <button mat-mini-fab color="white" (click)="onSearch()">
-            <mat-icon fontIcon="home"></mat-icon>
+            <mat-icon>user</mat-icon>
         </button>
     </div>
 </mat-toolbar>

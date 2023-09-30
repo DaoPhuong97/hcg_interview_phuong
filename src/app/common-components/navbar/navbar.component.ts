@@ -2,7 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import { searchRepository } from 'src/app/store/homepage/actions';
+import {
+  onToggleAdvacnedFilter,
+  searchRepository,
+} from 'src/app/store/homepage/actions';
+import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -12,25 +17,43 @@ import { searchRepository } from 'src/app/store/homepage/actions';
 export class NavbarComponent implements OnInit {
   @ViewChild('searchInput') searchInput!: ElementRef;
 
+  searchTerm = '';
   formControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three', 'Four', 'Five'];
-  filteredOptions: string[];
+  options: string[] = [];
+  filteredOptions: string[] = [];
 
-  constructor(private store: Store<HomepageState>) {
-    this.filteredOptions = this.options.slice();
-  }
+  state: Observable<any> = this.store.select(selectState);
+  filters: Observable<any> = this.store.select(selectFilter);
 
-  ngOnInit(): void {}
+  histories: string[] = [];
 
-  filter() {
-    const filterValue = '';
-    this.filteredOptions = this.options.filter((o) =>
-      o.toLowerCase().includes(filterValue)
+  constructor(private store: Store<HomepageState>) {}
+
+  ngOnInit(): void {
+    const initSearchTerm = 'angular';
+    this.histories.concat(initSearchTerm);
+    this.searchTerm = initSearchTerm;
+    this.store.dispatch(
+      searchRepository({
+        value: initSearchTerm,
+        filter: { owner: '', language: '' },
+      })
     );
   }
 
+  onFilter() {}
+
   onSearch() {
-    const { value } = this.searchInput.nativeElement;
-    this.store.dispatch(searchRepository());
+    this.histories = this.histories.concat(this.searchTerm);
+    this.filteredOptions = this.histories;
+    this.filters.subscribe((filter) => {
+      this.store.dispatch(searchRepository({ value: this.searchTerm, filter }));
+    });
+  }
+
+  handleAdvancedSearch(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.store.dispatch(onToggleAdvacnedFilter());
   }
 }

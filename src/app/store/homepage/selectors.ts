@@ -5,7 +5,15 @@ export const selectHomepageState = createFeatureSelector<fromHomepage.State>(
   fromHomepage.homepageKey
 );
 
-export const selectGuests = createSelector(
-  selectHomepageState,
-  (state) => state
-);
+const selector = (selectorFn: <T>(state: any) => T) =>
+  createSelector(selectHomepageState, selectorFn);
+
+export const selectState = selector((state) => state);
+
+export const selectSearchResult = selector((state) => state.items);
+
+export const selectCurrentPage = selector((state) => state.page);
+
+export const selectFilter = selector((state) => state.filter);
+
+export const selectIsUseFilter = selector((state) => state.isUseFilter);

@@ -12,7 +12,10 @@ export const loadHomepageFailure = createAction(
   props<{ error: any }>()
 );
 
-export const searchRepository = createAction('searchRepository');
+export const searchRepository = createAction(
+  'searchRepository',
+  props<{ value: string }>()
+);
 export const searchRepositorySuccess = createAction(
   'searchRepositorySuccess',
   props<{ payload: any }>()

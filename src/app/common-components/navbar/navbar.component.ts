@@ -31,6 +31,6 @@ export class NavbarComponent implements OnInit {
 
   onSearch() {
     const { value } = this.searchInput.nativeElement;
-    this.store.dispatch(searchRepository());
+    this.store.dispatch(searchRepository({ value }));
   }
 }

@@ -12,8 +12,8 @@ export class HomepageEffects {
   searchRepoitoryData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HomepageActions.searchRepository),
-      switchMap(() =>
-        this.homepageService.searchRepository('angular').pipe(
+      switchMap((props) =>
+        this.homepageService.searchRepository(props.value).pipe(
           map((res) =>
             HomepageActions.searchRepositorySuccess({ payload: res })
           ),

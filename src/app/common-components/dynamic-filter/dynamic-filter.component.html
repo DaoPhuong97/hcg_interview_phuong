@@ -1,11 +1,13 @@
-<div *ngIf="isUseFilter | async" class="dynamic-filter-container">
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <mat-label>Owner</mat-label>
-            <input type="search" [(ngModel)]="ownerValue" (ngModelChange)="onOwnerInputChange($event)" matInput
-                [ngModelOptions]="{standalone: true}" placeholder="Enter text...">
-        </mat-form-field>
+<div style="padding: 0 20vw;">
+    <div *ngIf="isUseFilter | async" class="dynamic-filter-container my-8">
+        <form class="example-form d-flex items-center flex-col">
+            <mat-form-field class="example-full-width w-100">
+                <mat-label>Owner</mat-label>
+                <input class="w-100" type="search" [(ngModel)]="ownerValue" (ngModelChange)="onOwnerInputChange($event)"
+                    matInput [ngModelOptions]="{standalone: true}" placeholder="Enter text...">
+            </mat-form-field>
 
-        <!-- <app-language-filter></app-language-filter> -->
-    </form>
+            <app-language-filter></app-language-filter>
+        </form>
+    </div>
 </div>

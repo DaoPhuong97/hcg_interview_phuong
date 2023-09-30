@@ -15,7 +15,7 @@ export class HomepageEffects {
       switchMap(() =>
         this.homepageService.searchRepository('angular').pipe(
           map((res) =>
-            HomepageActions.searchRepositorySuccess({ response: res })
+            HomepageActions.searchRepositorySuccess({ payload: res })
           ),
           catchError((error) =>
             of(HomepageActions.searchRepositoryFailure({ error }))

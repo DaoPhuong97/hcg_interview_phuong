@@ -5,7 +5,7 @@ export const selectHomepageState = createFeatureSelector<fromHomepage.State>(
   fromHomepage.homepageKey
 );
 
-export const selectGuests = createSelector(
+export const selectSearchResult = createSelector(
   selectHomepageState,
-  (state) => state
+  (state) => state.items
 );

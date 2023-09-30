@@ -29,8 +29,8 @@ const homepageReducer = createReducer(
     return { ...state };
   }),
   on(HomepageActions.searchRepositorySuccess, (state, action) => {
-    console.log(action);
-    return state;
+    const { items } = action.payload;
+    return { ...state, items, page: state.page + 1, loading: false };
   }),
   on(HomepageActions.searchRepositoryFailure, (state, action) => {
     return state;

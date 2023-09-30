@@ -15,7 +15,7 @@ export const loadHomepageFailure = createAction(
 export const searchRepository = createAction('searchRepository');
 export const searchRepositorySuccess = createAction(
   'searchRepositorySuccess',
-  props<{ response: any[] }>()
+  props<{ payload: any }>()
 );
 export const searchRepositoryFailure = createAction(
   'searchRepositoryFailure',

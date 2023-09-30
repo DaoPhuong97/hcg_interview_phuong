@@ -42,3 +42,16 @@ export const updateAdvancedFilter = createAction(
   'updateAdvancedFilter',
   props<{ key: string; value: string }>()
 );
+
+export const searchRepositoryWithFilter = createAction(
+  'searchRepository',
+  props<{ filter: any }>()
+);
+export const searchRepositoryWithFilterSuccess = createAction(
+  'searchRepositorySuccess',
+  props<{ payload: any }>()
+);
+export const searchRepositoryWithFilterFailure = createAction(
+  'searchRepositoryFailure',
+  props<{ error: any }>()
+);

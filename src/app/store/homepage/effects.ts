@@ -48,6 +48,24 @@ export class HomepageEffects {
       })
     );
   });
+
+  // searchRepositoryWithFilterData$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(HomepageActions.searchRepositoryWithFilter),
+  //     switchMap((props) =>
+  //       this.homepageService.searchRepositoryByFilter(props).pipe(
+  //         map((res) =>
+  //           HomepageActions.searchRepositoryWithFilterSuccess({
+  //             payload: res,
+  //           })
+  //         ),
+  //         catchError((error) =>
+  //           of(HomepageActions.searchRepositoryFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
   constructor(
     private actions$: Actions,
     private homepageService: HomepageService

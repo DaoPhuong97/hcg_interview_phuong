@@ -62,6 +62,10 @@ const homepageReducer = createReducer(
       filter: { ...state.filter, [action.key]: action.value },
     };
   })
+
+  // on(HomepageActions.searchRepositoryWithFilterSuccess, (state, action) => {
+  //   return { ...state, items: action.payload };
+  // })
 );
 
 export function reducer(state: State | undefined, action: Action) {

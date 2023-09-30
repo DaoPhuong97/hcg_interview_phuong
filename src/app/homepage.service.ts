@@ -31,8 +31,8 @@ export class HomepageService {
     );
   }
 
-  searchRepositoryByFilter(props: SearchByFilterProps) {
-    const { owner, language } = props;
+  searchRepositoryByFilter(filter: any) {
+    const { owner, language = 'JavaScript' } = filter;
     return this.http.get(
       `${this.GITHUB_API_USER}${owner}/repos?language=${language}`
     );

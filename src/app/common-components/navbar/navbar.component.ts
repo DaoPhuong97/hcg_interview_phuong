@@ -2,7 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State as HomepageState } from '../../store/homepage/reducers';
-import { searchRepository } from 'src/app/store/homepage/actions';
+import {
+  searchRepository,
+  searchRepositoryWithFilter,
+} from 'src/app/store/homepage/actions';
 import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
 import { Observable } from 'rxjs';
 
@@ -34,16 +37,16 @@ export class NavbarComponent implements OnInit {
 
   onFilter() {}
 
-  onOwnerInputChange(value: string) {}
-
   onSearch() {
     this.store.dispatch(searchRepository({ value: this.searchTerm }));
   }
 
   handleAdvancedSearch(event: any) {
     event.preventDefault();
-    this.filters.subscribe((filter) => {
-      console.log(filter);
-    });
+    event.stopPropagation();
+
+    // this.filters.subscribe((filter) => {
+    //   this.store.dispatch(searchRepositoryWithFilter(filter));
+    // });
   }
 }

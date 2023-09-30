@@ -1,19 +1,23 @@
 <div style="padding: 0 20vw;">
     <div *ngIf="isUseFilter | async" class="dynamic-filter-container my-8">
-        <form class="example-form d-flex items-center flex-col">
-            <mat-form-field class="example-full-width w-100">
-                <mat-label>Owner</mat-label>
-                <input class="w-100" type="search" [(ngModel)]="ownerValue" (ngModelChange)="onOwnerInputChange($event)"
-                    matInput [ngModelOptions]="{standalone: true}" placeholder="Enter text...">
-            </mat-form-field>
+        <form class="example-form  py-4 d-flex items-center flex-col">
+            <div class="w-100 d-flex items-center flex-col">
+                <mat-form-field class="example-full-width w-100">
+                    <mat-label>Owner</mat-label>
+                    <input class="w-100" type="search" [(ngModel)]="ownerValue"
+                        (ngModelChange)="onOwnerInputChange($event)" matInput [ngModelOptions]="{standalone: true}"
+                        placeholder="Enter text...">
+                </mat-form-field>
 
-            <button *ngIf="!useLanguageFilter" mat-button (click)="toggleLanguageFilter(true)">
-                <mat-icon>add</mat-icon>
+                <button *ngIf="!useLanguageFilter" mat-button (click)="toggleLanguageFilter(true)">
+                    <mat-icon>add</mat-icon>
 
-                Add Language
-                filter</button>
+                    Add Language
+                    filter</button>
+            </div>
 
-            <div *ngIf="useLanguageFilter" class="d-flex">
+
+            <div *ngIf="useLanguageFilter" class="d-flex items-center">
                 <app-language-filter></app-language-filter>
                 <button (click)="toggleLanguageFilter(false)" mat-icon-button
                     aria-label="Example icon button with a vertical three dot icon">

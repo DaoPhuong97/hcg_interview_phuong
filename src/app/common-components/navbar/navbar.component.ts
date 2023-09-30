@@ -5,7 +5,6 @@ import { State as HomepageState } from '../../store/homepage/reducers';
 import {
   onToggleAdvacnedFilter,
   searchRepository,
-  searchRepositoryWithFilter,
 } from 'src/app/store/homepage/actions';
 import { selectFilter, selectState } from 'src/app/store/homepage/selectors';
 import { Observable } from 'rxjs';

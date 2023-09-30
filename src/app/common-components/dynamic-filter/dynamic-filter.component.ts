@@ -4,7 +4,6 @@ import { State as HomepageState } from '../../store/homepage/reducers';
 import {
   selectFilter,
   selectIsUseFilter,
-  selectState,
 } from 'src/app/store/homepage/selectors';
 import { Observable, filter } from 'rxjs';
 import { updateAdvancedFilter } from 'src/app/store/homepage/actions';
